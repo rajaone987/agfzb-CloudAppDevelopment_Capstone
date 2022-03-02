@@ -43,7 +43,60 @@
     <!--Add a nav bar here -->
 
     <!-- Add reviews as cards -->
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+                <th>itemData.id</th>
+                <th>itemData.full_name</th>
+                <th>itemData.city</th>
+                <th>itemData.address</th>
+                <th>itemData.lat</th>
+                <th>itemData.long</th>
+                <th>itemData.short_name</th>
+                <th>itemData.st</th>
+                <th>itemData.state</th>
+                
+                <th>itemData.zip + "</td></tr>";
+            </tr>
+          </thead>
+          <tbody id="data">
+      
+          </tbody>
+        </table>
+      </div>
 
     </body>
+    <script>
+
+fetch("https://c3538d64.eu-gb.apigw.appdomain.cloud/api/dealership").then(
+  res => {
+    res.json().then(
+      data => {
+        console.log(data.data);
+        if (data.data.length > 0) {
+
+          var temp = "";
+          data.data.forEach((itemData) => {
+            temp += "<tr>";
+            temp += "<td>" + itemData.id + "</td>";
+            temp += "<td>" + itemData.full_name + "</td>";
+            temp += "<td>" + itemData.city + "</td>";
+            temp += "<td>" + itemData.address + "</td>";
+            temp += "<td>" + itemData.lat + "</td>";
+            temp += "<td>" + itemData.long + "</td>";
+            temp += "<td>" + itemData.short_name + "</td>";
+            temp += "<td>" + itemData.st + "</td>";
+            temp += "<td>" + itemData.state + "</td>";
+            
+            temp += "<td>" + itemData.zip + "</td></tr>";
+          });
+          document.getElementById('data').innerHTML = temp;
+        }
+      }
+    )
+  }
+)
+    </script>
 
 </html>
